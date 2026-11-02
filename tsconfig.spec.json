@@ -3,9 +3,8 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "vitest/globals"
-    ]
+    "module": "CommonJS",
+    "types": ["jest"]
   },
   "include": [
     "src/**/*.d.ts",

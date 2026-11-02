@@ -1,0 +1,20 @@
+<div class="page">
+  <header class="page-header">
+    <h1>People</h1>
+    <button mat-flat-button (click)="openCreatePerson()">Create person</button>
+  </header>
+
+  @if (loading()) {
+    <mat-progress-bar mode="indeterminate" />
+  }
+
+  <p class="count">Showing {{ people().length }} people</p>
+
+  @if (people().length === 0 && !loading()) {
+    <p>No people yet.</p>
+  } @else {
+    <mat-card class="table-card">
+      <app-people-table [people]="people()" (editPerson)="openEditPerson($event)" />
+    </mat-card>
+  }
+</div>

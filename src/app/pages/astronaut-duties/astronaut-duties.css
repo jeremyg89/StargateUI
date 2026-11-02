@@ -1,0 +1,41 @@
+.page {
+  padding: 1.5rem;
+}
+
+.page-header,
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.page-header {
+  margin-bottom: 1rem;
+}
+
+.search {
+  justify-content: flex-start;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+.summary {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.count {
+  margin: 0 0 0.75rem;
+}
+
+.table-card {
+  overflow: auto;
+  background-color: #fff;
+}

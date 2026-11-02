@@ -1,0 +1,5 @@
+mat-toolbar {
+  --mat-toolbar-container-background-color: #0a2540;
+  --mat-toolbar-container-text-color: #fff;
+  --mat-button-text-label-text-color: #fff;
+}

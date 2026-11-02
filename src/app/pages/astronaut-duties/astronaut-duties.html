@@ -1,0 +1,56 @@
+<div class="page">
+  <header class="page-header">
+    <h1>Astronaut duties</h1>
+    <button mat-flat-button (click)="openCreateDuty()" [disabled]="!person()">Add duty</button>
+  </header>
+
+  <form class="search" [formGroup]="searchForm" (ngSubmit)="findDuties()">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" [matAutocomplete]="auto" />
+      @if (searchForm.controls.name.touched && searchForm.controls.name.hasError('required')) {
+        <mat-error>Name is required</mat-error>
+      }
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        [displayWith]="displayName"
+        (optionSelected)="selectPerson($event.option.value)"
+      >
+        @for (person of choices(); track person.personId) {
+          <mat-option [value]="person.name">{{ person.name | capitalCase }}</mat-option>
+        } @empty {
+          <mat-option disabled>No matching people</mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+    <button mat-flat-button type="submit" [disabled]="loading()">Find duties</button>
+  </form>
+
+  @if (loading()) {
+    <mat-progress-bar mode="indeterminate" />
+  }
+
+  @if (searched() && !loading() && !person()) {
+    <p>No person found with that name.</p>
+  }
+
+  @if (person(); as person) {
+    <section class="summary">
+      <h2>{{ person.name | capitalCase }}</h2>
+      <p>Rank: {{ person.currentRank || 'None' }}</p>
+      <p>Current duty: {{ person.currentDutyTitle || 'None' }}</p>
+      <p>Career start: {{ person.careerStartDate | date: 'mediumDate' }}</p>
+      <p>Career end: {{ person.careerEndDate | date: 'mediumDate' }}</p>
+    </section>
+
+    <p class="count">Showing {{ duties().length }} duties</p>
+
+    @if (duties().length === 0) {
+      <p>No astronaut duties.</p>
+    } @else {
+      <mat-card class="table-card">
+        <app-astronaut-duty-table [duties]="duties()" />
+      </mat-card>
+    }
+  }
+</div>

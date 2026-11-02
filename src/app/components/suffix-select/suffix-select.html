@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-label>Suffix</mat-label>
+  <mat-select [value]="value" [disabled]="disabled" (selectionChange)="select($event.value)">
+    @for (suffix of suffixes; track suffix.value) {
+      <mat-option [value]="suffix.value">{{ suffix.label }}</mat-option>
+    }
+  </mat-select>
+</mat-form-field>
